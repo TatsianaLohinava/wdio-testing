@@ -9,8 +9,8 @@ class SearchBar extends Page {
         return $('.input-reset');
     }
 
-    async enterQuery(query) {
-        await this.searchField.addValue(query)
+    get searchButton() {
+        return $('.top-panel__search__btn');
     }
 
     async open() {
