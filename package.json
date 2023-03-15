@@ -5,9 +5,8 @@
   "devDependencies": {
     "@wdio/local-runner": "^8.5.9",
     "@wdio/mocha-framework": "^8.5.6",
-    "@wdio/spec-reporter": "^8.4.0",
-    "chromedriver": "^110.0.0",
-    "wdio-chromedriver-service": "^8.1.1"
+    "@wdio/selenium-standalone-service": "^8.6.1",
+    "@wdio/spec-reporter": "^8.4.0"
   },
   "scripts": {
     "wdio": "wdio run ./wdio.conf.js"
