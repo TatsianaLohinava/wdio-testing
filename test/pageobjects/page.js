@@ -1,4 +1,4 @@
-module.exports = class Page {
+export default class Page {
     async open() {
         await browser.url(`https://oz.by`)
     }

@@ -1,6 +1,8 @@
 {
   "dependencies": {
-    "@wdio/cli": "^8.5.9"
+    "@wdio/cli": "^8.5.9",
+    "log4js": "^6.9.1",
+    "wdio-html-nice-reporter": "^8.1.0"
   },
   "devDependencies": {
     "@wdio/local-runner": "^8.5.9",
@@ -11,5 +13,6 @@
   },
   "scripts": {
     "wdio": "wdio run ./wdio.conf.js"
-  }
+  },
+  "type": "module"
 }

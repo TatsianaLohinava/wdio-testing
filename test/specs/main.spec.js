@@ -1,7 +1,7 @@
-const MainPage = require('../pageobjects/main.page');
-const SearchBar = require('../pageobjects/search.page');
-const LoginForm = require('../pageobjects/login.page');
-const fs = require('fs');
+import MainPage from '../pageobjects/main.page.js';
+import SearchBar from '../pageobjects/search.page.js';
+import LoginForm from '../pageobjects/login.page.js';
+import * as fs from 'fs';
 
 const testData = fs.promises.readFile('test/data/test-data.json', 'utf8')
     .then((data) => JSON.parse(data));

@@ -1,4 +1,4 @@
-const Page = require('./page');
+import Page from './page.js';
 
 class LoginForm extends Page {
 
@@ -33,4 +33,4 @@ class LoginForm extends Page {
     }
 }
 
-module.exports = new LoginForm();
+export default new LoginForm();

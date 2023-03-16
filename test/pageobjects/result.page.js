@@ -1,4 +1,4 @@
-const Page = require('./page');
+import Page from './page.js';
 
 class ResultPage extends Page {
 
@@ -29,4 +29,4 @@ class ResultPage extends Page {
 
 }
 
-module.exports = new ResultPage();
+export default new ResultPage();

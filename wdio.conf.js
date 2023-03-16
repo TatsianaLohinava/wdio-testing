@@ -1,11 +1,14 @@
-exports.config = {
+import { ReportAggregator } from "wdio-html-nice-reporter";
+import log4j from "log4js";
+
+export const config = {
     //
     // ====================
     // Runner Configuration
     // ====================
     // WebdriverIO supports running e2e tests as well as unit and component tests.
     runner: 'local',
-    
+
     //
     // ==================
     // Specify Test Files
@@ -52,7 +55,7 @@ exports.config = {
     // https://saucelabs.com/platform/platform-configurator
     //
     capabilities: [{
-    
+
         // maxInstances can get overwritten per capability. So if you have an in-house Selenium
         // grid with only 5 firefox instances available you can make sure that not more than
         // 5 instances get started at a time.
@@ -113,7 +116,7 @@ exports.config = {
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
     services: ['chromedriver'],
-    
+
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
     // see also: https://webdriver.io/docs/frameworks
@@ -134,10 +137,46 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    reporters: ['spec'],
+    reporters: ['spec',
+        ["html-nice", {
+            outputDir: './reports/html-reports/',
+            filename: 'report.html',
+            reportTitle: 'Test Report',
+            linkScreenshots: true,
+            //to show the report in a browser when done
+            showInBrowser: true,
+            collapseTests: false,
+            //to turn on screenshots after every test
+            useOnAfterCommandForScreenshot: false,
 
+            //to initialize the logger
+            LOG: log4j.getLogger("default")
+        }
+        ]
+    ],
 
-    
+    onPrepare: async function (config, capabilities) {
+        let reportAggregator = new ReportAggregator({
+            outputDir: "./reports/html-reports/",
+            filename: "master-report.html",
+            reportTitle: "Master Report",
+            browserName: capabilities.browserName,
+            collapseTests: true,
+            showInBrowser: true,
+            LOG: console,
+            // to use the template override option, can point to your own file in the test project:
+            // templateFilename: path.resolve(__dirname, '../template/wdio-html-reporter-alt-template.hbs')
+        });
+        reportAggregator.clean();
+        global.reportAggregator = reportAggregator;
+    },
+
+    onComplete: function (exitCode, config, capabilities, results) {
+        (async () => {
+            await global.reportAggregator.createReport();
+        })();
+    },
+
     //
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/

@@ -1,4 +1,4 @@
-const Page = require('./page');
+import Page from './page.js';
 
 class SearchBar extends Page {
     get searchField() {
@@ -18,4 +18,4 @@ class SearchBar extends Page {
     }
 }
 
-module.exports = new SearchBar();
+export default new SearchBar();
