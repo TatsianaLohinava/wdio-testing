@@ -147,7 +147,7 @@ export const config = {
             showInBrowser: true,
             collapseTests: false,
             //to turn on screenshots after every test
-            useOnAfterCommandForScreenshot: false,
+            useOnAfterCommandForScreenshot: true,
 
             //to initialize the logger
             LOG: log4j.getLogger("default")
@@ -278,8 +278,9 @@ export const config = {
      * @param {Boolean} result.passed    true if test has passed, otherwise false
      * @param {Object}  result.retries   informations to spec related retries, e.g. `{ attempts: 0, limit: 0 }`
      */
-    // afterTest: function(test, context, { error, result, duration, passed, retries }) {
-    // },
+    afterTest: async function(test, context, { error, result, duration, passed, retries }) {
+        await browser.saveScreenshot(`./reports/html-reports/screenshots/screenshot_${browser.title}_${(test.title).split(' ').join("_")}.png`);
+    },
 
 
     /**
