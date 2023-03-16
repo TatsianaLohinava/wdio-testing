@@ -2,7 +2,8 @@
   "dependencies": {
     "@wdio/cli": "^8.5.9",
     "log4js": "^6.9.1",
-    "wdio-html-nice-reporter": "^8.1.0"
+    "wdio-html-nice-reporter": "^8.1.0",
+    "wdio-video-reporter": "^3.5.0"
   },
   "devDependencies": {
     "@wdio/local-runner": "^8.5.9",

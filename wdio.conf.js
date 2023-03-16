@@ -1,5 +1,6 @@
 import { ReportAggregator } from "wdio-html-nice-reporter";
 import log4j from "log4js";
+import video from 'wdio-video-reporter';
 
 export const config = {
     //
@@ -147,12 +148,18 @@ export const config = {
             showInBrowser: true,
             collapseTests: false,
             //to turn on screenshots after every test
-            useOnAfterCommandForScreenshot: true,
+            useOnAfterCommandForScreenshot: false,
 
             //to initialize the logger
             LOG: log4j.getLogger("default")
         }
-        ]
+        ],
+        [video, {
+            saveAllVideos: true,       // If true, also saves videos for successful test cases
+            videoSlowdownMultiplier: 5, // Higher to get slower videos, lower for faster videos [Value 1-100]
+            videoRenderTimeout: 3,      // Max seconds to wait for a video to finish rendering\
+            outputDir: './reports/html-reports/screenshots/video',
+        }]
     ],
 
     onPrepare: async function (config, capabilities) {
