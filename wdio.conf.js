@@ -1,4 +1,4 @@
-const {ZebrunnerReporter, ZebrunnerService} = require('@zebrunner/javascript-agent-webdriverio');
+const { ZebrunnerReporter, ZebrunnerService } = require('@zebrunner/javascript-agent-webdriverio');
 
 exports.config = {
     //
@@ -8,7 +8,7 @@ exports.config = {
     // WebdriverIO supports running e2e tests as well as unit and component tests.
     reporterSyncInterval: 60 * 1000,
     runner: 'local',
-    
+
     //
     // ==================
     // Specify Test Files
@@ -61,7 +61,7 @@ exports.config = {
     user: 'user',
     key: 'key',
     capabilities: [{
-    
+
         // maxInstances can get overwritten per capability. So if you have an in-house Selenium
         // grid with only 5 firefox instances available you can make sure that not more than
         // 5 instances get started at a time.
@@ -122,7 +122,7 @@ exports.config = {
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
     services: [[ZebrunnerService]],
-    
+
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
     // see also: https://webdriver.io/docs/frameworks
@@ -144,24 +144,27 @@ exports.config = {
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
     reporters: ['spec',
-    [
-        // replace the following block with your ZebrunnerReporter configuration
-        //----------------------- Zebrunner Reporter configuration -----------------------
-        ZebrunnerReporter,
-        {
-          enabled: true,
-          projectKey: 'DEF',
-          server: {
-            hostname: 'https://mycompany.zebrunner.com/',
-            accessToken: 'accessToken',
-          }
-        },
-        //----------------------- Zebrunner Reporter configuration -----------------------
-      ]
-],
+        [
+            // replace the following block with your ZebrunnerReporter configuration
+            //----------------------- Zebrunner Reporter configuration -----------------------
+            ZebrunnerReporter,
+            {
+                enabled: true,
+                projectKey: 'DEF',
+                server: {
+                    hostname: 'https://mycompany.zebrunner.com/',
+                    accessToken: 'accessToken',
+                },
+                launch: {
+                    displayName: 'Zebrunner wdio test',
+                },
+            },
+            //----------------------- Zebrunner Reporter configuration -----------------------
+        ]
+    ],
 
 
-    
+
     //
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/
