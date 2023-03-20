@@ -135,7 +135,10 @@ exports.config = {
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
     reporters: ['spec', ['junit', {
-        outputDir: './reports/'
+        outputDir: './reports/',
+        outputFileFormat: function(options) {
+            return `results-${options.capabilities.browserName}.xml`
+        }
     }]],
     //
     // Options to be passed to Mocha.
