@@ -2,6 +2,7 @@ const MainPage = require('../pageobjects/main.page');
 const SearchBar = require('../pageobjects/search.page');
 const ResultPage = require('../pageobjects/result.page');
 const fs = require('fs');
+const {testRail} = require("@zebrunner/javascript-agent-webdriverio");
 
 const testData = fs.promises.readFile('test/data/test-data.json', 'utf8')
     .then((data) => JSON.parse(data));
@@ -16,6 +17,7 @@ describe("Result page", () => {
     })
 
     it('filters the new products', async () => {
+        testRail.testCaseId("C3509");
         const data = await testData;
         await MainPage.open();
         await SearchBar.searchField.setValue(data.query);

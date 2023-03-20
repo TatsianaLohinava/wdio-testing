@@ -2,12 +2,14 @@ const MainPage = require('../pageobjects/main.page');
 const SearchBar = require('../pageobjects/search.page');
 const LoginForm = require('../pageobjects/login.page');
 const fs = require('fs');
+const {testRail} = require("@zebrunner/javascript-agent-webdriverio");
 
 const testData = fs.promises.readFile('test/data/test-data.json', 'utf8')
     .then((data) => JSON.parse(data));
 
 describe('Main page', () => {
     it('resets the search input', async () => {
+        testRail.testCaseId("C3508");
         const data = await testData;
         await MainPage.open();
         await SearchBar.searchField.addValue(data.query);
@@ -16,6 +18,7 @@ describe('Main page', () => {
     })
 
     it('changes background on hover', async () => {
+        testRail.testCaseId("C3506");
         await MainPage.open();
         const sidebarMenu = await MainPage.sidebarMenu;
         for (let item of sidebarMenu) {
@@ -25,6 +28,7 @@ describe('Main page', () => {
     })
 
     it('shows message on invalid login credentials', async () => {
+        testRail.testCaseId("C3510");
         const data = await testData;
         await MainPage.open();
         await MainPage.loginButton.click();
@@ -34,6 +38,7 @@ describe('Main page', () => {
     })
 
     it('unpins the section', async () => {
+        testRail.testCaseId("C3507");
         await MainPage.open();
         await MainPage.unpinHeader();
     })
