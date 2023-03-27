@@ -122,7 +122,10 @@ exports.config = {
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
 
-    services: ['chromedriver'],
+    path: '/wd/hub',
+    services: [
+        ['selenoid-standalone', { pathToBrowsersConfig: './browsers.json' }]
+    ],
 
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
