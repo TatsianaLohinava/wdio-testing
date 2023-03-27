@@ -1,5 +1,5 @@
 {
-    "query": "Bitey",
-    "email": "abcd@gmail.com",
-    "pass": "abcd"
+    "name": "Petr",
+    "pass": "abcd",
+    "baseUrl": "https://oz.by/"
 }
