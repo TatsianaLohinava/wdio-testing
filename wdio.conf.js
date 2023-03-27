@@ -124,7 +124,7 @@ exports.config = {
 
     path: '/wd/hub',
     services: [
-        ['selenoid-standalone', { pathToBrowsersConfig: './browsers.json' }]
+        ['docker']
     ],
 
     // Framework you want to run your specs with.

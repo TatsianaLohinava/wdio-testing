@@ -1,7 +1,6 @@
 {
   "dependencies": {
-    "@wdio/cli": "^8.5.9",
-    "wdio-selenoid-standalone-service": "^1.0.0"
+    "@wdio/cli": "^8.5.9"
   },
   "devDependencies": {
     "@wdio/junit-reporter": "^8.4.0",

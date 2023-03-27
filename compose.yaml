@@ -1,0 +1,20 @@
+services:
+  selenoid:
+    image: "aerokube/selenoid:latest"
+    container_name: selenoid
+    ports:
+      - "4444:4444"
+    network_mode: bridge
+    volumes:
+      - ".:/etc/selenoid"
+      - "./target:/output"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    command: ["-conf", "/etc/selenoid/browsers.json"]
+  chrome_100.0:
+    image: "sskorol/selenoid_chromium_vnc:100.0"
+    container_name: chrome_100.0
+    network_mode: bridge
+    links:
+      - selenoid
+    volumes:
+      - "/dev/shm:/dev/shm"
