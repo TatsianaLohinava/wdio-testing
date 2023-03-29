@@ -154,7 +154,7 @@ exports.config = {
     reporters: ['spec', ['junit', {
         outputDir: './reports/',
         outputFileFormat: function(options) {
-            return `results-${options.capabilities.browserName}.xml`
+            return `results-${options.capabilities.browserName}-${options.cid}.xml`
         }
     }]],
     //
