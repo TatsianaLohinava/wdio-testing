@@ -4,17 +4,40 @@ services:
     container_name: selenoid
     ports:
       - "4444:4444"
-    network_mode: bridge
+    networks:
+      - selenoid
     volumes:
       - ".:/etc/selenoid"
       - "./target:/output"
       - "/var/run/docker.sock:/var/run/docker.sock"
-    command: ["-conf", "/etc/selenoid/browsers.json"]
+    command: ["-conf", "/etc/selenoid/browsers.json", "-container-network", "selenoid", "-limit", "5"]
   chrome_100.0:
     image: "sskorol/selenoid_chromium_vnc:100.0"
     container_name: chrome_100.0
-    network_mode: bridge
+    networks: 
+      - selenoid
+    depends_on:
+      - selenoid
     links:
       - selenoid
     volumes:
       - "/dev/shm:/dev/shm"
+  app:
+    build: 
+      context: .
+    depends_on:
+      - selenoid
+      - chrome_100.0
+    links:
+      - selenoid
+      - chrome_100.0
+    networks:
+      - selenoid
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    command: npm run wdio
+
+networks:
+  selenoid:
+    name: selenoid

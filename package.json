@@ -10,8 +10,6 @@
     "wdio-docker-service": "^3.2.1"
   },
   "scripts": {
-    "wdio": "wdio run ./wdio.conf.js",
-    "compose-up": "docker compose up",
-    "compose-down": "docker compose down"
+    "wdio": "wdio run ./wdio.conf.js"
   }
 }
